@@ -1,0 +1,66 @@
+<!--
+  Generated template for the InicioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'Titulo' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      {{ 'NuevoWod' | translate }}
+      <ion-fab top right #fabMenu>
+        <button ion-fab mini [disabled]="!nuevoWodForm.form.valid"><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list>
+          <button ion-fab (click)="guardarWod(fabMenu, nuevoWodForm)"><ion-icon name="create"></ion-icon></button>
+          <button ion-fab (click)="compartirWodFacebook(fabMenu, nuevoWodForm)"><ion-icon name="logo-facebook"></ion-icon></button>
+          <button ion-fab (click)="compartirWodTwitter(fabMenu, nuevoWodForm)"><ion-icon name="logo-twitter"></ion-icon></button>
+          <button ion-fab (click)="compartirWodWhatsapp(fabMenu, nuevoWodForm)"><ion-icon name="logo-whatsapp"></ion-icon></button>
+          <button ion-fab (click)="compartirWodInstagram(fabMenu, nuevoWodForm)"><ion-icon name="logo-instagram"></ion-icon></button>
+          <button ion-fab (click)="compartirWod(fabMenu, nuevoWodForm)"><ion-icon name="share"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-avatar>
+        <img [src]="nuevoWod.imagen" *ngIf="nuevoWod.imagen" (tap)="obtenerImagen()" />
+        <img src="assets/img/no-thumb.png" *ngIf="!nuevoWod.imagen" (tap)="obtenerImagen()" />
+      </ion-avatar>
+      <form #nuevoWodForm="ngForm">
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>{{ "Nombre" | translate }}</ion-label>
+            <ion-input [(ngModel)]="nuevoWod.nombre" name="nombre" placeholder="{{ 'Nombre' | translate }}" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>{{ "Descipcion" | translate }}</ion-label>
+            <ion-textarea [(ngModel)]="nuevoWod.descripcion" name="descripcion" placeholder="{{ 'Descipcion' | translate }}"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>{{ "Fecha" | translate }}</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="nuevoWod.fecha" name="fecha"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>{{ "Tiempo" | translate }}</ion-label>
+            <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="nuevoWod.tiempo" name="tiempo"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>{{ "Repeticiones" | translate }}</ion-label>
+            <ion-input [(ngModel)]="nuevoWod.repeticiones" name="repeticiones" type="number"></ion-input>
+          </ion-item>
+        </ion-list>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
